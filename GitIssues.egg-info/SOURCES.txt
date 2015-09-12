@@ -1,0 +1,7 @@
+gi.py
+GitIssues.egg-info/PKG-INFO
+GitIssues.egg-info/SOURCES.txt
+GitIssues.egg-info/dependency_links.txt
+GitIssues.egg-info/entry_points.txt
+GitIssues.egg-info/requires.txt
+GitIssues.egg-info/top_level.txt
