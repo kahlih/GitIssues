@@ -6,6 +6,7 @@ setup(
 	py_modules = ['gi'],
 	install_requires=[
 		'Click',
+		'requests'
 	],
 	entry_points=""" 
 		[console_scripts]
