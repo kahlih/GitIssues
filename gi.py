@@ -2,15 +2,17 @@ import click
 import requests
 import json
 import getpass
-try:
-    from urllib.parse import urlparse
-except ImportError:
-    from urlparse import urlparse
-
 
 url_head = "https://api.github.com/repos/"
 
+def print_version(ctx, param, value):
+	if not value or ctx.resilient_parsing:
+		return
+	click.echo('Version 1.0')
+	ctx.exit()
+
 @click.group()
+@click.option('--version', is_flag=True, callback=print_version,expose_value=False, is_eager=True)
 def cli():
 	pass
 
@@ -30,16 +32,26 @@ def list():
 		click.echo(click.style(s, fg="blue"))
 
 @cli.command()
-@click.option("--t", default="Another Issue", help="none") 
+@click.option("--title", default="Another Issue", help="none") 
 @click.argument('message')
-def open(t,message):
+@click.argument('assignee', required=False, type=str)
+@click.argument('milestone', required=False, type=int)
+@click.argument('labels', required=False, type=str)
+def open(title,message, assignee, milestone, labels):
 	repo = input('Github Repo: ')
 	username = input('Github username: ')
 	password = getpass.getpass('Github password: ')	
 	
 	d = {}
-	d["title"]=t
+	d["title"]=title
 	d["body"]=message
+	if (assignee):
+		d["assignee"]=assignee
+	if (milestone):
+		d["milestone"]=milestone
+	if (labels):
+		l = [labels]
+		d["labels"]=l
 	
 	this_url = url_head + username + "/" + repo + "/issues"
 	res = requests.post(
