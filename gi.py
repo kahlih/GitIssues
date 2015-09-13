@@ -18,10 +18,18 @@ def cli():
 
 @cli.command()
 def list():
-	repo = input('Github Repo: ')
-	username = input('Github username: ')
-	password = getpass.getpass('Github password: ')	
-
+	try:
+		repo = input('Github Repo: ')
+		username = input('Github username: ')
+		password = getpass.getpass('Github password: ')	
+	# Catches issue if Python3 is not being used
+	# Need to patch this better so user is not prompted twice
+	except NameError:
+		print("Sorry, My Fault. Try Again")
+		repo = raw_input('Github Repo: ')
+                username = raw_input('Github username: ')
+                password = getpass.getpass('Github password: ')
+	
 	turl = "" + url_head + username + "/" + repo + "/issues"
 	
 	response = requests.get(url=turl,auth=(username, password))	
@@ -64,4 +72,7 @@ def open(title,message, assignee, milestone, labels):
 	else:
 		print(res.status_code, res.reason)
 
-
+@cli.command()
+@click.argument('file')
+def load(file):
+	pass
