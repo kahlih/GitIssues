@@ -27,8 +27,8 @@ def list():
 	except NameError:
 		print("Sorry, My Fault. Try Again")
 		repo = raw_input('Github Repo: ')
-                username = raw_input('Github username: ')
-                password = getpass.getpass('Github password: ')
+		username = raw_input('Github username: ')
+		password = getpass.getpass('Github password: ')
 	
 	turl = "" + url_head + username + "/" + repo + "/issues"
 	
@@ -74,6 +74,49 @@ def open(title,message, assignee, milestone, labels):
         )
 	if(res.status_code == 201):
 		click.echo(click.style("Issue created", fg="cyan")) 
+	else:
+		print(res.status_code, res.reason)
+
+@cli.command()
+@click.option('--num', prompt="What is the number of the Issue you would like to edit")
+@click.argument('title', required=False, type=str)
+@click.argument('message', required=False, type=str)
+@click.argument('assignee', required=False, type=str)
+@click.argument('milestone', required=False, type=int)
+@click.argument('labels', required=False, type=str)
+def edit(num,title,message,assignee,milestone,labels):
+	try:
+		repo = input('Github Repo: ')
+		username = input('Github username: ')
+		password = getpass.getpass('Github password: ')	
+	except NameError:
+		print("Sorry, My Fault. Try Again")
+		repo = raw_input('Github Repo: ')
+		username = raw_input('Github username: ')
+		password = getpass.getpass('Github password: ')
+
+	this_url = url_head + username + "/" + repo + "/issues/" + num
+	
+	d={}
+	if (title):
+		d["title"]=title
+	if (message):
+		d["body"]=message
+	if (assignee):
+		d["assignee"]=assignee
+	if (milestone):
+		d["milestone"]=milestone
+	if (labels):
+		d["labels"]=labels
+
+	res = requests.patch(
+		url=this_url,
+		auth = (username, password),
+		data = json.dumps(d),
+	)
+
+	if(res.status_code == 200):
+		click.echo(click.style("Issue Updated", fg="red"))
 	else:
 		print(res.status_code, res.reason)
 
