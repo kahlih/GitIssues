@@ -46,10 +46,15 @@ def list():
 @click.argument('milestone', required=False, type=int)
 @click.argument('labels', required=False, type=str)
 def open(title,message, assignee, milestone, labels):
-	repo = input('Github Repo: ')
-	username = input('Github username: ')
-	password = getpass.getpass('Github password: ')	
-	
+	try:
+		repo = input('Github Repo: ')
+		username = input('Github username: ')
+		password = getpass.getpass('Github password: ')	
+	except NameError:
+		print("Sorry, My Fault. Try Again")
+		repo = raw_input('Github Repo: ')
+		username = raw_input('Github username: ')
+		password = getpass.getpass('Github password: ')
 	d = {}
 	d["title"]=title
 	d["body"]=message
