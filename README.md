@@ -3,6 +3,9 @@
 **About**     
 This is a tool I made to ease my nervous-tick of having to create Issues ONLY via GitHub's Issue page. Now, I can do this via the command line.
 
+**Tools**     
+GitIssues was made with [Click](http://click.pocoo.org/5/), which is a nice Python package that aides in creating command-line interfaces.
+
 **Usage**     
 After cloning the repo, type the following command:    
 $pip install --editable .
@@ -13,10 +16,10 @@ Keep in mind that support for both Python 2 and 3 is tough. I'm trying to find w
 To list Issues in a repo, type the following and follow the prompts:    
       $gi list     
 
-To post Issues, type the following
-  $gi open --title TITLE MESSAGE 
+To post Issues, type the following:     
+      $gi open --title TITLE [MESSAGE] [ASSIGNEE] [Milestones] [labels] 
 
+**Bugs**     
+Currently, there are problems creating and editing issues. For Example, you can't enter labels and milestones before the message. They must be done in order (no skipping).
 
-
-**Tools**     
-GitIssues was made with [Click](http://click.pocoo.org/5/), which is a nice Python package that aides in creating command-line interfaces.
+Currently, you can only tag one label (not a list of them).
