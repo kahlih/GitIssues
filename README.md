@@ -16,8 +16,9 @@ Keep in mind that support for both Python 2 and 3 is tough. I'm trying to find w
 To list Issues in a repo, type the following and follow the prompts:    
       $gi list     
 
-To post Issues, type the following:     
-      $gi open --title TITLE [MESSAGE] [ASSIGNEE] [Milestones] [labels] 
+To post/edit Issues, type the following:     
+      $gi open --title TITLE [MESSAGE] [ASSIGNEE] [MILESTONE] [LABELS]
+      $gi edit --num [TITLE] [MESSAGE] [ASSIGNEE] [MILESTONE] [LABELS]
 
 **Bugs**     
 Currently, there are problems creating and editing issues. For Example, you can't enter labels and milestones before the message. They must be done in order (no skipping).
