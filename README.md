@@ -23,3 +23,5 @@ To post Issues, type the following:
 Currently, there are problems creating and editing issues. For Example, you can't enter labels and milestones before the message. They must be done in order (no skipping).
 
 Currently, you can only tag one label (not a list of them).
+
+Currently, there is no support for user error (wrong input).
