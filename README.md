@@ -17,7 +17,7 @@ To list Issues in a repo, type the following and follow the prompts:
       $gi list     
 
 To post/edit Issues, type the following:     
-      $gi open --title TITLE [MESSAGE] [ASSIGNEE] [MILESTONE] [LABELS]
+      $gi open --title TITLE [MESSAGE] [ASSIGNEE] [MILESTONE] [LABELS]          
       $gi edit --num [TITLE] [MESSAGE] [ASSIGNEE] [MILESTONE] [LABELS]
 
 **Bugs**     
