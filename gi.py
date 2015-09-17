@@ -19,14 +19,13 @@ def cli():
 
 @cli.command()
 def list():
-	if sys.version_info[0] == 3:#try:
+	if sys.version_info[0] == 3:
 		repo = input('Github Repo: ')
 		username = input('Github username: ')
 		password = getpass.getpass('Github password: ')	
 	# Catches issue if Python3 is not being used
 	# Need to patch this better so user is not prompted twice
-	else:#except NameError:
-		print("Sorry, My Fault. Try Again")
+	else:
 		repo = raw_input('Github Repo: ')
 		username = raw_input('Github username: ')
 		password = getpass.getpass('Github password: ')
