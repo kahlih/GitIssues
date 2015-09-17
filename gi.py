@@ -2,6 +2,7 @@ import click
 import requests
 import json
 import getpass
+import sys
 
 url_head = "https://api.github.com/repos/"
 
@@ -18,13 +19,13 @@ def cli():
 
 @cli.command()
 def list():
-	try:
+	if sys.version_info[0] == 3:#try:
 		repo = input('Github Repo: ')
 		username = input('Github username: ')
 		password = getpass.getpass('Github password: ')	
 	# Catches issue if Python3 is not being used
 	# Need to patch this better so user is not prompted twice
-	except NameError:
+	else:#except NameError:
 		print("Sorry, My Fault. Try Again")
 		repo = raw_input('Github Repo: ')
 		username = raw_input('Github username: ')
