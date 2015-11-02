@@ -46,12 +46,11 @@ def list():
 @click.argument('milestone', required=False, type=int)
 @click.argument('labels', required=False, type=str)
 def open(title,message, assignee, milestone, labels):
-	try:
+	if sys.version_info[0] == 3:
 		repo = input('Github Repo: ')
 		username = input('Github username: ')
-		password = getpass.getpass('Github password: ')	
-	except NameError:
-		print("Sorry, My Fault. Try Again")
+		password = getpass.getpass('Github password: ')
+	else:
 		repo = raw_input('Github Repo: ')
 		username = raw_input('Github username: ')
 		password = getpass.getpass('Github password: ')
@@ -85,16 +84,15 @@ def open(title,message, assignee, milestone, labels):
 @click.argument('milestone', required=False, type=int)
 @click.argument('labels', required=False, type=str)
 def edit(num,title,message,assignee,milestone,labels):
-	try:
+	if sys.version_info[0] == 3:
 		repo = input('Github Repo: ')
 		username = input('Github username: ')
-		password = getpass.getpass('Github password: ')	
-	except NameError:
-		print("Sorry, My Fault. Try Again")
+		password = getpass.getpass('Github password: ')
+	else:
 		repo = raw_input('Github Repo: ')
 		username = raw_input('Github username: ')
 		password = getpass.getpass('Github password: ')
-
+	
 	this_url = url_head + username + "/" + repo + "/issues/" + num
 	
 	d={}
